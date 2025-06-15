@@ -2,7 +2,7 @@
 
 🔗 **Live Demo:** [View Here](https://ojasvi171.github.io/internship-programs-portal/)
 
-![Preview](./screenshot.png)
+![Preview](./Screenshot.png)
 
 A modern, responsive UI for displaying internship opportunities. This is a personal project demo.
 
