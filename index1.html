@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Programs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #faf9ff;
+            padding: 40px 20px;
+            background-image: linear-gradient(135deg, #faf9ff 0%, #f0f3ff 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #3a3a6d;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #8a63ff, #5e9bff);
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .internship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+            gap: 30px;
+        }
+        
+        .internship-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(138, 99, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            min-height: 250px;
+            border: 2px solid rgba(138, 99, 255, 0.15);
+            position: relative;
+        }
+        
+        .internship-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8a63ff, #5e9bff);
+        }
+        
+        .internship-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(138, 99, 255, 0.2);
+            border-color: rgba(138, 99, 255, 0.3);
+        }
+        
+        .card-left {
+            width: 40%;
+            padding: 25px;
+            border-right: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #fbfaff;
+        }
+        
+        .card-right {
+            width: 60%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: white;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            color: #3a3a6d;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #8a63ff, #5e9bff);
+            border-radius: 3px;
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+            padding: 8px 12px;
+            background-color: rgba(138, 99, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid #8a63ff;
+            transition: transform 0.2s ease;
+        }
+        
+        .detail-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .detail-icon {
+            margin-right: 10px;
+            color: #8a63ff;
+            font-size: 1rem;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .detail-text {
+            color: #555;
+        }
+        
+        .detail-label {
+            color: #6b7280;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #3a3a6d;
+        }
+        
+        .stipend {
+            color: #ff5e7d;
+            font-weight: 600;
+        }
+        
+        .paid {
+            color: #4CAF50;
+        }
+        
+        .card-description {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            padding: 15px;
+            background-color: #f9f8ff;
+            border-radius: 8px;
+            border-left: 4px solid #5e9bff;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+        }
+        
+        .card-highlights {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f8ff;
+            border-radius: 8px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #3a3a6d;
+            padding: 6px 10px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .highlight-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-icon {
+            color: #5e9bff;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        .btn-apply {
+            align-self: flex-end;
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #8a63ff, #5e9bff);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: auto;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(138, 99, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(138, 99, 255, 0.4);
+            background: linear-gradient(135deg, #7a53ee, #4e8bef);
+        }
+        
+        .btn-apply:active {
+            transform: translateY(0);
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #e8e4ff, #d6e1ff);
+            color: #5e5bff;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid rgba(94, 91, 255, 0.1);
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #e8e4ff, #d6e1ff);
+            color: #5e5bff;
+        }
+        
+        .programming-tag {
+            background: linear-gradient(135deg, #ffe4e8, #ffd6e1);
+            color: #ff5b7a;
+        }
+        
+        .design-tag {
+            background: linear-gradient(135deg, #e4ffe8, #d6ffe1);
+            color: #5bff7a;
+        }
+        
+        .search-container {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-input {
+            padding: 12px 20px;
+            width: 60%;
+            max-width: 500px;
+            border: 2px solid rgba(138, 99, 255, 0.2);
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(138, 99, 255, 0.1);
+        }
+        
+        .search-input:focus {
+            border-color: #8a63ff;
+            box-shadow: 0 4px 15px rgba(138, 99, 255, 0.2);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            color: #8a63ff;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .internship-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .internship-card {
+                flex-direction: column;
+            }
+            
+            .card-left, .card-right {
+                width: 100%;
+            }
+            
+            .card-left {
+                border-right: none;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Internship Programs</h1>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search internships..." id="searchInput">
+        </div>
+        
+        <div class="internship-grid" id="internshipGrid">
+            <!-- Web Development Card -->
+            <div class="internship-card">
+                <div class="card-left">
+                    <div>
+                        <span class="tag tech-tag">Tech</span>
+                        <h2 class="card-title">Web Development</h2>
+                    </div>
+                    <div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="far fa-clock"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">1-2 months</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Remote</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-money-bill-wave"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Stipend</span>
+                                <span class="detail-value stipend">Unpaid</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="far fa-calendar-alt"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Start Date</span>
+                                <span class="detail-value">05/11/2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-right">
+                    <p class="card-description">
+                        Dive into modern web development with hands-on experience in building responsive websites and web applications using the latest technologies.
+                    </p>
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Learn HTML5, CSS3, JavaScript</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Work with React.js framework</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Build portfolio projects</span>
+                        </div>
+                    </div>
+                    <button class="btn-apply" onclick="window.open('https://example.com/web-dev-apply', '_blank')">Apply Now</button>
+                </div>
+            </div>
+            
+            <!-- App Development Card -->
+            <div class="internship-card">
+                <div class="card-left">
+                    <div>
+                        <span class="tag tech-tag">Tech</span>
+                        <h2 class="card-title">App Development</h2>
+                    </div>
+                    <div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="far fa-clock"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">1-2 months</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Remote</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-money-bill-wave"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Stipend</span>
+                                <span class="detail-value stipend paid">$1,000/month</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="far fa-calendar-alt"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Start Date</span>
+                                <span class="detail-value">05/11/2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-right">
+                    <p class="card-description">
+                        Create cross-platform mobile applications using Flutter framework, with guidance from experienced developers in the field.
+                    </p>
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Learn Dart programming</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Build iOS & Android apps</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Publish to app stores</span>
+                        </div>
+                    </div>
+                    <button class="btn-apply" onclick="window.open('https://example.com/app-dev-apply', '_blank')">Apply Now</button>
+                </div>
+            </div>
+            
+            <!-- Python Programming Card -->
+            <div class="internship-card">
+                <div class="card-left">
+                    <div>
+                        <span class="tag programming-tag">Programming</span>
+                        <h2 class="card-title">Python Programming</h2>
+                    </div>
+                    <div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="far fa-clock"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">1-2 months</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Remote</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-money-bill-wave"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Stipend</span>
+                                <span class="detail-value stipend">Unpaid</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="far fa-calendar-alt"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Start Date</span>
+                                <span class="detail-value">05/11/2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-right">
+                    <p class="card-description">
+                        Master Python programming from basics to advanced concepts, with practical projects in data analysis, automation, and web development.
+                    </p>
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Learn Python fundamentals</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Work with Django framework</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Build real-world applications</span>
+                        </div>
+                    </div>
+                    <button class="btn-apply" onclick="window.open('https://example.com/python-apply', '_blank')">Apply Now</button>
+                </div>
+            </div>
+            
+            <!-- Java Programming Card -->
+            <div class="internship-card">
+                <div class="card-left">
+                    <div>
+                        <span class="tag programming-tag">Programming</span>
+                        <h2 class="card-title">Java Programming</h2>
+                    </div>
+                    <div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="far fa-clock"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">1-2 months</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Remote</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-money-bill-wave"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Stipend</span>
+                                <span class="detail-value stipend paid">$1,200/month</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="far fa-calendar-alt"></i></div>
+                            <div class="detail-text">
+                                <span class="detail-label">Start Date</span>
+                                <span class="detail-value">05/11/2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-right">
+                    <p class="card-description">
+                        Gain expertise in Java programming language, focusing on object-oriented principles, data structures, and building scalable applications.
+                    </p>
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Master OOP concepts</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Learn Spring framework</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i class="fas fa-check"></i></span>
+                            <span>Build enterprise applications</span>
+                        </div>
+                    </div>
+                    <button class="btn-apply" onclick="window.open('https://example.com/java-apply', '_blank')">Apply Now</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="no-results">
+            <i class="fas fa-search"></i>
+            <h3>No internships found</h3>
+            <p>Try adjusting your search criteria</p>
+        </div>
+    </div>
+
+    <script>
+        // search function
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.internship-card');
+            let visibleCards = 0;
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                const description = card.querySelector('.card-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    visibleCards++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // for no card match 
+            const noResults = document.querySelector('.no-results');
+            noResults.style.display = visibleCards === 0 ? 'block' : 'none';
+        });
+        
+       
+    </script>
+</body>
+</html>
